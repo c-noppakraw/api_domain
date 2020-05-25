@@ -43,7 +43,7 @@ const post_domain = async function (id_domain, payload) {
 const delete_domain = async function (id_domain, payload) {
     const updateSql = `UPDATE domain_name SET status = ? WHERE id_domain = '${id_domain}'`;
     if (await db.update(updateSql, payload)) {
-        const sql = "SELECT * FROM domain_name ORDER BY id_domain DESC LIMIT 1 ";
+        const sql = `SELECT * FROM domain_name WHERE id_domain = '${id_domain}'`;
         const data_list = await db.query(sql)
         return data_list
     }
