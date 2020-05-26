@@ -6,5 +6,6 @@ router.get('/', function(req, res, next) {
 });
 router.use('/domains', require('./domain'));
 router.use('/ssl', require('./ssl'));
+router.use('/transcript', require('./payment'));
 
 module.exports = router;
