@@ -11,7 +11,7 @@ const list_domain = async function () {
 const add_domain = async function (payload) {
     const insertSql = 'INSERT INTO domain_name SET ?;'
     if (await db.insert(insertSql, payload)) {
-        const sql = "SELECT * FROM domain_name ORDER BY id_domain DESC LIMIT 1 ";
+        const sql = "SELECT * FROM domain_name ORDER BY id DESC LIMIT 1 ";
         const data_list = await db.query(sql)
         return data_list
     }
@@ -25,15 +25,15 @@ const search_domain = async function (keyword) {
 }
 
 const get_domain = async function (id_domain) {
-    const sql = `SELECT * FROM domain_name WHERE id_domain = '${id_domain}'`;
+    const sql = `SELECT * FROM domain_name WHERE id = '${id_domain}'`;
     const data_list = await db.query(sql)
     return data_list;
 }
 
 const post_domain = async function (id_domain, payload) {
-    const updateSql = `UPDATE domain_name SET ? WHERE id_domain = '${id_domain}'`;
+    const updateSql = `UPDATE domain_name SET ? WHERE id = '${id_domain}'`;
     if (await db.update(updateSql, payload)) {
-        const sql = `SELECT * FROM domain_name WHERE id_domain = '${id_domain}'`;
+        const sql = `SELECT * FROM domain_name WHERE id = '${id_domain}'`;
         const data_list = await db.query(sql)
         return data_list
     }
@@ -41,9 +41,9 @@ const post_domain = async function (id_domain, payload) {
 }
 
 const delete_domain = async function (id_domain, payload) {
-    const updateSql = `UPDATE domain_name SET status = ? WHERE id_domain = '${id_domain}'`;
+    const updateSql = `UPDATE domain_name SET status = ? WHERE id = '${id_domain}'`;
     if (await db.update(updateSql, payload)) {
-        const sql = `SELECT * FROM domain_name WHERE id_domain = '${id_domain}'`;
+        const sql = `SELECT * FROM domain_name WHERE id = '${id_domain}'`;
         const data_list = await db.query(sql)
         return data_list
     }
