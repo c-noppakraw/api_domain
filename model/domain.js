@@ -3,14 +3,9 @@ const Database = require('../config/db');
 const db = new Database()
 
 const list_domain = async function (limit, start) {
-    if (start == 1) {
-        start = 0;
-    } else {
-        start = (start * limit) - limit;
-    }
     const sql = `SELECT * FROM domain_name WHERE status = 'enable' 
                 ORDER BY id DESC 
-                LIMIT ${start} OFFSET ${limit}`;
+                LIMIT ${limit} OFFSET ${start}`;
     const data_list = await db.query(sql)
     return data_list ;
 }
