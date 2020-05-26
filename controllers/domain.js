@@ -26,8 +26,8 @@ const add_domain = async function (req, res) {
 
 const search_domain = async function (req, res) {
     try {
-        const {id_domain} = req.body;
-        const data = await model.search_domain(id_domain);
+        const {name} = req.body;
+        const data = await model.search_domain(name);
         new Success(res, 'success', data)
     } catch (err) {
         console.error(err)
