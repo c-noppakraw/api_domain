@@ -5,11 +5,16 @@ const model = require('../model/domain');
 
 const list_domain = async function (req, res) {
     try {
-        const start = req.query.start;
-        const limit = req.query.limit;
-        // console.log(start);
-        // console.log(limit);
-        const data = await model.list_domain(start, limit);
+        let start = req.query.start;
+        let limit = req.query.limit;
+
+        if (start == 1) {
+            start = 0;
+        } else {
+            start = (start * limit) - limit;
+        } 
+
+        const data = await model.list_domain(limit, start);
         // const data = await model.list_domain();
         new Success(res, 'success', data)
     } catch (err) {
