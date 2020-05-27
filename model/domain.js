@@ -1,4 +1,5 @@
 const Database = require('../config/db');
+const axios = require('axios')
 
 const db = new Database()
 
@@ -52,4 +53,10 @@ const delete_domain = async function (id_domain, payload) {
     throw Error()
 }
 
-module.exports = { list_domain, add_domain, search_domain, get_domain, post_domain, delete_domain };
+const checkDomain = async (domainName) => {
+    // return domainName
+    const data = await axios.get(`https://domain-availability.whoisxmlapi.com/api/v1?apiKey=at_6CwWIBL1vJNLF9sytvYbyjmrLQDki&domainName=${domainName}`)
+    return data
+}
+
+module.exports = { list_domain, add_domain, search_domain, get_domain, post_domain, delete_domain,checkDomain };

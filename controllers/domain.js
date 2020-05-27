@@ -80,4 +80,14 @@ const delete_domain = async function (req, res) {
     }
 }
 
-module.exports = { list_domain, add_domain, search_domain, get_domain, post_domain, delete_domain }; 
+const checkDomain = async (req, res) => {
+    try {
+        const data = await model.checkDomain(req.query.domainName);
+        return res.json(data)
+    } catch (err) {
+        console.error(err)
+        new Error(res, 'not_found')
+    }
+}
+
+module.exports = { list_domain, add_domain, search_domain, get_domain, post_domain, delete_domain, checkDomain }; 
