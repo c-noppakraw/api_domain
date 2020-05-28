@@ -3,7 +3,7 @@ const router = express.Router();
 const {Success,Error} = require('../response')
 const model = require('../model/ssl');
 
-const list_ssl = async function (req, res) {
+const list_ssl = async (req, res) => {
     try {
         const data = await model.list_ssl();
         new Success(res, 'success', data)
@@ -13,7 +13,7 @@ const list_ssl = async function (req, res) {
     }
 };
 
-const add_ssl = async function (req, res) {
+const add_ssl = async (req, res) => {
     try {
         const payload = req.body;
         const data = await model.add_ssl(payload) ;
@@ -24,7 +24,7 @@ const add_ssl = async function (req, res) {
     }
 }
 
-const search_ssl = async function (req, res) {
+const search_ssl = async (req, res) => {
     try {
         const {id} = req.body;
         const data = await model.search_ssl(id);
@@ -35,7 +35,7 @@ const search_ssl = async function (req, res) {
     }
 }
 
-const get_ssl = async function (req, res) {
+const get_ssl = async (req, res) => {
     try {
         const id = req.params.id;
         const data = await model.get_ssl(id);
@@ -46,7 +46,7 @@ const get_ssl = async function (req, res) {
     }
 }
 
-const post_ssl = async function (req, res) {
+const post_ssl = async (req, res) => {
     try {
         const id = req.params.id;
         const payload = req.body;
@@ -58,7 +58,7 @@ const post_ssl = async function (req, res) {
     }
 }
 
-const delete_ssl = async function (req, res) {
+const delete_ssl = async (req, res) => {
     try {
         const id = req.params.id;
         const payload = 'disable';

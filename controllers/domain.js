@@ -3,7 +3,7 @@ const router = express.Router();
 const {Success,Error} = require('../response')
 const model = require('../model/domain');
 
-const list_domain = async function (req, res) {
+const list_domain = async (req, res) => {
     try {
         let start = req.query.start;
         let limit = req.query.limit;
@@ -23,7 +23,7 @@ const list_domain = async function (req, res) {
     }
 };
 
-const add_domain = async function (req, res) {
+const add_domain = async (req, res) => {
     try {
         const payload = req.body;
         const data = await model.add_domain(payload) ;
@@ -34,7 +34,7 @@ const add_domain = async function (req, res) {
     }
 };
 
-const search_domain = async function (req, res) {
+const search_domain = async (req, res) => {
     try {
         const {name} = req.body;
         const data = await model.search_domain(name);
@@ -45,7 +45,7 @@ const search_domain = async function (req, res) {
     }
 }
 
-const get_domain = async function (req, res) {
+const get_domain = async (req, res) => {
     try {
         const id_domain = req.params.id;
         const data = await model.get_domain(id_domain);
@@ -56,7 +56,7 @@ const get_domain = async function (req, res) {
     }
 }
 
-const post_domain = async function (req, res) {
+const post_domain = async (req, res) => {
     try {
         const id_domain = req.params.id;
         const payload = req.body;
@@ -68,7 +68,7 @@ const post_domain = async function (req, res) {
     }
 }
 
-const delete_domain = async function (req, res) {
+const delete_domain = async (req, res) => {
     try {
         const id_domain = req.params.id;
         const payload = 'disable';

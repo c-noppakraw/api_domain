@@ -3,7 +3,7 @@ const router = express.Router();
 const {Success,Error} = require('../response')
 const model = require('../model/payment');
 
-const list_payment = async function (req, res) {
+const list_payment = async (req, res) => {
     try {
         const data = await model.list_payment();
         new Success(res, 'success', data)
@@ -13,7 +13,7 @@ const list_payment = async function (req, res) {
     }
 };
 
-const add_payment = async function (req, res) {
+const add_payment = async (req, res) => {
     try {
         const payload = req.body;
         const data = await model.add_payment(payload) 
@@ -24,7 +24,7 @@ const add_payment = async function (req, res) {
     }
 };
 
-const search_payment = async function (req, res) {
+const search_payment = async (req, res) => {
     try {
         const {domain_name} = req.body;
         const data = await model.search_payment(domain_name);
@@ -35,7 +35,7 @@ const search_payment = async function (req, res) {
     }
 }
 
-const get_payment = async function (req, res) {
+const get_payment = async (req, res) => {
     try {
         const id_payment = req.params.id;
         const data = await model.get_payment(id_payment);
@@ -46,7 +46,7 @@ const get_payment = async function (req, res) {
     }
 }
 
-const post_payment = async function (req, res) {
+const post_payment = async (req, res) => {
     try {
         const id_payment = req.params.id;
         const payload = req.body;
@@ -58,7 +58,7 @@ const post_payment = async function (req, res) {
     }
 }
 
-const delete_payment = async function (req, res) {
+const delete_payment = async (req, res) => {
     try {
         const id_payment = req.params.id;
         const payload = 'disable';

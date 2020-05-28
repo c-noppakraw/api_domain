@@ -2,7 +2,7 @@ const Database = require('../config/db');
 
 const db = new Database()
 
-const list_ssl = async function () {
+const list_ssl = async () => {
     const sql = 
                 `SELECT ssl_certificate.id, ssl_certificate.id_domain, domain_name.name, ssl_certificate.status, ssl_certificate.creation_date, ssl_certificate.updated_date, ssl_certificate.expiry_date
                 FROM ssl_certificate 
@@ -13,7 +13,7 @@ const list_ssl = async function () {
     return data_list ;
 }
 
-const add_ssl = async function (payload) {
+const add_ssl = async (payload) => {
     const insertSql = 'INSERT INTO ssl_certificate SET ?;'
     if (await db.insert(insertSql, payload)) {
         const sql = 
@@ -28,7 +28,7 @@ const add_ssl = async function (payload) {
     throw Error()
 }
 
-const search_ssl = async function (id) {
+const search_ssl = async (id) => {
     const sql = 
                 `SELECT ssl_certificate.id, ssl_certificate.id_domain, domain_name.name, ssl_certificate.status, ssl_certificate.creation_date, ssl_certificate.updated_date, ssl_certificate.expiry_date
                 FROM ssl_certificate
@@ -39,7 +39,7 @@ const search_ssl = async function (id) {
     return data_list;
 }
 
-const get_ssl = async function (id) {
+const get_ssl = async (id) => {
     const sql = 
                 `SELECT ssl_certificate.id, ssl_certificate.id_domain, domain_name.name, ssl_certificate.status, ssl_certificate.creation_date, ssl_certificate.updated_date, ssl_certificate.expiry_date
                 FROM ssl_certificate
@@ -50,7 +50,7 @@ const get_ssl = async function (id) {
     return data_list;
 }
 
-const post_ssl = async function (id, payload) {
+const post_ssl = async (id, payload) => {
     const updateSql = `UPDATE ssl_certificate SET ? WHERE id = '${id}'`;
     if (await db.update(updateSql, payload)) {
         const sql = 
@@ -65,7 +65,7 @@ const post_ssl = async function (id, payload) {
     throw Error()
 }
 
-const delete_ssl = async function (id, payload) {
+const delete_ssl = async (id, payload) => {
     const updateSql = `UPDATE ssl_certificate SET status = ? WHERE id = '${id}'`;
     if (await db.update(updateSql, payload)) {
         const sql = 
